@@ -90,7 +90,7 @@ source $ZSH/oh-my-zsh.sh
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
 # else
-#   export EDITOR='mvim'
+export EDITOR='nvim'
 # fi
 
 # Compilation flags
@@ -106,3 +106,5 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias v=nvim
 export PATH="$PATH:/home/nobora/.local/bin"
+export PATH=$PATH:$HOME/.npm-packages/bin
+export GOOGLE_APPLICATION_CREDENTIALS="/home/nobora/.pvenv/clitentela-firebase-adminsdk-r77aj-7138e769e1.json"

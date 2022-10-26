@@ -26,8 +26,9 @@
 
 import os
 import subprocess
+from fractions import Fraction
 
-from libqtile import bar, layout, widget, hook
+from libqtile import bar, layout, widget, hook, extension
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 # from libqtile.utils import guess_terminal
@@ -88,8 +89,22 @@ keys = [
     Key([mod, "shift"], "c", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    Key([mod], "p", lazy.spawncmd(),
-        desc="Spawn a command using a prompt widget"),
+    Key([mod], "p", lazy.run_extension(extension.DmenuRun(
+        dmenu_promt="~> ",
+        fontsize=13,
+        dmenu_lines=0,
+        dmenu_bottom=True,
+        font="JetBrainsMono Nerd Font",
+        background="0c2245",
+        foreground="ffffff",
+    ))),
+    # ADD F KEY USES
+    Key([], "F6", lazy.spawn("playerctl --player=spotify previous")),
+    Key([], "F7", lazy.spawn("playerctl --player=spotify play-pause")),
+    Key([], "F8", lazy.spawn("playerctl --player=spotify next")),
+    Key([], "F9", lazy.spawn("playerctl --player=spotify play-pause")),
+    Key([], "F10", lazy.spawn("playerctl --player=spotify volume 0.1-")),
+    Key([], "F11", lazy.spawn("playerctl --player=spotify volume 0.1+")),
 ]
 
 
@@ -97,11 +112,11 @@ def get_groups():
     spaces = [
         "WWW",
         "DEV",
-        "MUS",
         "MSG",
+        "ORG",
+        "MUS",
         "DIS",
-        "GFX",
-        "SYS",
+        "API"
     ]
     return [Group(space) for space in spaces]
 
@@ -152,8 +167,8 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font="sans",
-    fontsize=12,
+    font="JetBrainsMono Nerd Font",
+    fontsize=14,
     padding=3,
 )
 extension_defaults = widget_defaults.copy()
@@ -162,6 +177,9 @@ screens = [
     Screen(
         top=bar.Bar(
             [
+                widget.Spacer(
+                    length=10
+                ),
                 widget.GroupBox(
                     highlight_method="line",
                     highlight_color="0c2245",
@@ -174,18 +192,42 @@ screens = [
                 widget.Spacer(
                     length=bar.STRETCH
                 ),
-                widget.Chord(
-                    chords_colors={
-                        "launch": ("#ff0000", "#ffffff"),
-                    },
-                    name_transform=lambda name: name.upper(),
+                widget.Clock(format="%H:%M"),
+                widget.Spacer(
+                    length=bar.STRETCH
                 ),
                 # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
                 # widget.StatusNotifier(),
-                widget.Systray(),
-                widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
+                # widget.Bluetooth(),
+                widget.CheckUpdates(
+                    no_update_string="Up to Date 👍",
+                    distro="Ubuntu",
+                    display_format="{updates}📦",
+                    # colour_have_updates="51ddf0"
+                ),
+                widget.NetGraph(
+                    bandwidth_type="down",
+                    fill_color="eb5834",
+                    graph_color="b52704",
+                    border_color="ffffff",
+                    border_width=0,
+                    frequency=2,
+                ),
+                widget.TextBox(
+                ),
+                widget.NetGraph(
+                    bandwidth_type="up",
+                    fill_color="44f2de",
+                    graph_color="017a6c",
+                    border_color="ffffff",
+                    border_width=0,
+                    frequency=2,
+                ),
+                widget.Spacer(
+                    length=10
+                ),
             ],
-            24,
+            28,
             background="0c2245",
             border_width=[0, 0, 1, 0],  # Draw top and bottom borders
             border_color=["ff00ff", "000000", "020c1c",
