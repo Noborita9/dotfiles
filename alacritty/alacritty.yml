@@ -10,7 +10,7 @@ env:
   # each instance of Alacritty. If it is not present, alacritty will
   # check the local terminfo database and use `alacritty` if it is
   # available, otherwise `xterm-256color` is used.
-  TERM: alacritty
+  TERM: xterm-256color 
   LANG: "en_US.UTF-8"
   LC_CTYPE: en_US.UTF-8
 window:
@@ -18,7 +18,7 @@ window:
   #
   # Specified in floating number from `0.0` to `1.0`.
   # The value `0.0` is completely transparent and `1.0` is opaque.
-  opacity: 0.825
+  opacity: 0.750
   # Window dimensions (changes require restart)
   #
   # Specified in number of columns/lines, not pixels.
@@ -37,9 +37,9 @@ window:
   #
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
-  #padding:
-  #  x: 0
-  #  y: 0
+  padding:
+    x: 6
+    y: 6
   # Spread additional padding evenly around the terminal content.
   #dynamic_padding: false
   # Window decorations
@@ -142,6 +142,10 @@ font:
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: false
 # Colors (Tomorrow Night Bright)
+cursor:
+  style: Block
+  unfocused_hollow: false
+
 colors:
   name: Belge
   author: ""

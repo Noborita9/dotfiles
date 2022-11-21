@@ -75,7 +75,6 @@ plugins=(
     python
     tmux
 )
-export TERM=xterm-256color
 ZSH_TMUX_AUTOSTART=true
 source $ZSH/oh-my-zsh.sh
 
@@ -105,6 +104,10 @@ export EDITOR='nvim'
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias v=nvim
-export PATH="$PATH:/home/nobora/.local/bin"
+export PATH="$PATH:/home/nobora/.local/bin:/home/nobora/.cargo/bin:"
 export PATH=$PATH:$HOME/.npm-packages/bin
 export GOOGLE_APPLICATION_CREDENTIALS="/home/nobora/.pvenv/clitentela-firebase-adminsdk-r77aj-7138e769e1.json"
+alias l="exa -l"
+alias ll="exa -l"
+alias ls="exa"
+alias cat="bat"

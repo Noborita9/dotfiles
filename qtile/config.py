@@ -108,15 +108,26 @@ keys = [
 ]
 
 
+noborita = {
+    "blue": "3451d1",
+    "light_blue": "267594",
+    "dark_blue": "161f45",
+    "white": "ffffff",
+    "black": "000000",
+    "gray": "26272e",
+    "light_gray": "4b4c57",
+}
+
+
 def get_groups():
     spaces = [
-        "WWW",
-        "DEV",
-        "MSG",
-        "ORG",
-        "MUS",
-        "DIS",
-        "API"
+        "  ",
+        "  ",
+        "  ",
+        "  ",
+        "  ",
+        " ﭮ ",
+        "  "
     ]
     return [Group(space) for space in spaces]
 
@@ -151,7 +162,9 @@ layouts = [
         border_focus="#b3d4f5",
         border_normal="#002f5e",
         border_focus_stack=["#d75f5f", "#8f3d3d"],
-        border_width=4),
+        border_width=3,
+        margin=8,
+    ),
     layout.Max(),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
@@ -178,57 +191,168 @@ screens = [
         top=bar.Bar(
             [
                 widget.Spacer(
-                    length=10
-                ),
-                widget.GroupBox(
-                    highlight_method="line",
-                    highlight_color="0c2245",
-                    this_current_screen_border="6a9beb",
-                    this_screen_border="215578",
-                    other_current_screen_border="215578",
-                    other_screen_border="215578",
-                ),
-                widget.Prompt(),
-                widget.Spacer(
-                    length=bar.STRETCH
-                ),
-                widget.Clock(format="%H:%M"),
-                widget.Spacer(
-                    length=bar.STRETCH
-                ),
-                # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
-                # widget.StatusNotifier(),
-                # widget.Bluetooth(),
-                widget.CheckUpdates(
-                    no_update_string="Up to Date 👍",
-                    distro="Ubuntu",
-                    display_format="{updates}📦",
-                    # colour_have_updates="51ddf0"
-                ),
-                widget.NetGraph(
-                    bandwidth_type="down",
-                    fill_color="eb5834",
-                    graph_color="b52704",
-                    border_color="ffffff",
-                    border_width=0,
-                    frequency=2,
+                    background=noborita["light_gray"],
+                    length=10,
                 ),
                 widget.TextBox(
+                    text="   ",
+                    foreground=noborita["white"],
+                    background=noborita["light_gray"],
+                    fontsize=28,
+                    padding=0
                 ),
-                widget.NetGraph(
-                    bandwidth_type="up",
-                    fill_color="44f2de",
-                    graph_color="017a6c",
-                    border_color="ffffff",
-                    border_width=0,
-                    frequency=2,
+                widget.TextBox(
+                    text="",
+                    foreground=noborita["light_gray"],
+                    background=noborita["gray"],
+                    fontsize=28,
+                    padding=0
                 ),
                 widget.Spacer(
-                    length=10
+                    background=noborita["gray"],
+                    length=20,
                 ),
+                widget.GroupBox(
+                    background=noborita["gray"],
+                    highlight_method="block",
+                    highlight_color=noborita["light_gray"],
+                    this_current_screen_border=noborita["light_gray"],
+                    this_screen_border=noborita["light_gray"],
+                    other_current_screen_border=noborita["light_gray"],
+                    other_screen_border=noborita["light_gray"],
+                    foreground=noborita["white"],
+                    inactive=noborita["white"],
+                    fontsize=20,
+                    spacing=4,
+                    padding=8,
+                    rounded=False,
+                    center_aligned=True,
+                ),
+                widget.TextBox(
+                    text=" ",
+                    foreground=noborita["gray"],
+                    fontsize=28,
+                    padding=0
+                ),
+                widget.Spacer(
+                    length=bar.STRETCH
+                ),
+                widget.TextBox(
+                    text=" ",
+                    foreground=noborita["blue"],
+                    fontsize=28,
+                    padding=0
+                ),
+                widget.TextBox(
+                    text="  ",
+                    background=noborita["blue"],
+                    foreground=noborita["white"],
+                    fontsize=28,
+                    padding=0
+                ),
+                widget.CurrentLayout(
+                    background=noborita["blue"],
+                    fontsize=16,
+                    # colour_have_updates="51ddf0"
+                ),
+                widget.TextBox(
+                    text="",
+                    foreground=noborita["light_blue"],
+                    background=noborita["blue"],
+                    fontsize=28,
+                    padding=0
+                ),
+                widget.TextBox(
+                    text="",
+                    foreground=noborita["white"],
+                    background=noborita["light_blue"],
+                    fontsize=28,
+                ),
+                widget.Memory(
+                    background=noborita["light_blue"],
+                    fontsize=16,
+                ),
+                widget.TextBox(
+                    text="",
+                    foreground=noborita["blue"],
+                    background=noborita["light_blue"],
+                    fontsize=28,
+                    padding=0
+                ),
+                widget.CheckUpdates(
+                    no_update_string="Up to Date ",
+                    distro="Ubuntu",
+                    display_format="{updates} ",
+                    background=noborita["blue"],
+                    fontsize=16,
+                    # colour_have_updates="51ddf0"
+                ),
+                widget.TextBox(
+                    text="",
+                    foreground=noborita["light_blue"],
+                    background=noborita["blue"],
+                    fontsize=28,
+                    padding=0
+                ),
+                widget.TextBox(
+                    text="",
+                    foreground=noborita["white"],
+                    background=noborita["light_blue"],
+                    fontsize=20,
+                ),
+                widget.Net(
+                    format="{down}",
+                    background=noborita["light_blue"],
+                    border_color=noborita["white"],
+                    update_interval=1,
+                    fontsize=16,
+                ),
+                widget.TextBox(
+                    text="",
+                    foreground=noborita["blue"],
+                    background=noborita["light_blue"],
+                    fontsize=28,
+                    padding=0
+                ),
+                widget.TextBox(
+                    text="",
+                    foreground=noborita["white"],
+                    background=noborita["blue"],
+                    fontsize=20,
+                ),
+                widget.Net(
+                    format="{up}",
+                    background=noborita["blue"],
+                    border_color=noborita["white"],
+                    update_interval=1,
+                    fontsize=16,
+                ),
+                widget.TextBox(
+                    text="",
+                    background=noborita["blue"],
+                    foreground=noborita["light_blue"],
+                    fontsize=30,
+                    padding=0
+                ),
+                widget.TextBox(
+                    text=" ",
+                    foreground=noborita["white"],
+                    background=noborita["light_blue"],
+                    fontsize=20
+                ),
+                widget.Clock(
+                    format="%H:%M",
+                    foreground=noborita["white"],
+                    background=noborita["light_blue"],
+                    fontsize=16
+                ),
+                widget.Spacer(
+                    length=10,
+                    background=noborita["light_blue"],
+                )
             ],
-            28,
-            background="0c2245",
+            32,
+            background=noborita["dark_blue"],
             border_width=[0, 0, 1, 0],  # Draw top and bottom borders
             border_color=["ff00ff", "000000", "020c1c",
                           "000000"]  # Borders are magenta
