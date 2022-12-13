@@ -98,6 +98,8 @@ keys = [
         background="0c2245",
         foreground="ffffff",
     ))),
+    Key([], "F5", lazy.window.cmd_disable_floating()),
+
     # ADD F KEY USES
     Key([], "F6", lazy.spawn("playerctl --player=spotify previous")),
     Key([], "F7", lazy.spawn("playerctl --player=spotify play-pause")),
@@ -105,6 +107,7 @@ keys = [
     Key([], "F9", lazy.spawn("playerctl --player=spotify play-pause")),
     Key([], "F10", lazy.spawn("playerctl --player=spotify volume 0.1-")),
     Key([], "F11", lazy.spawn("playerctl --player=spotify volume 0.1+")),
+    Key([], "F12", lazy.spawn("flameshot gui")),
 ]
 
 
